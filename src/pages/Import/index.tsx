@@ -11,7 +11,6 @@ import { Container, Title, ImportFileContainer, Footer } from './styles';
 
 import alert from '../../assets/alert.svg';
 import api from '../../services/api';
-import fileSize from 'filesize';
 
 interface FileProps {
   file: File;
@@ -46,7 +45,7 @@ const Import: React.FC = () => {
       file,
       name: file.name,
       readableSize: filesize(file.size),
-    }))
+    }));
 
     setUploadedFiles(uploadFiles);
   }

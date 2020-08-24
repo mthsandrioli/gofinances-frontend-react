@@ -41,15 +41,17 @@ const Dashboard: React.FC = () => {
         (transaction: Transaction) => ({
           ...transaction,
           formattedValue: formatValue(transaction.value),
-          formattedDate: new Date(transaction.created_at).toLocaleDateString('pt-br'),
-        })
+          formattedDate: new Date(transaction.created_at).toLocaleDateString(
+            'pt-br',
+          ),
+        }),
       );
 
       const balanceFormatted = {
-        income: formatValue(response.data.income),
-        outcome: formatValue(response.data.outcome),
-        total: formatValue(response.data.total),
-      }
+        income: formatValue(response.data.balance.income),
+        outcome: formatValue(response.data.balance.outcome),
+        total: formatValue(response.data.balance.total),
+      };
 
       setTransactions(transactionsFormatted);
       setBalance(balanceFormatted);
@@ -106,9 +108,9 @@ const Dashboard: React.FC = () => {
                     {transaction.formattedValue}
                   </td>
                   <td>{transaction.category.title}</td>
-                  <td>{transaction.formattedValue}</td>
+                  <td>{transaction.formattedDate}</td>
                 </tr>
-                ))}
+              ))}
             </tbody>
           </table>
         </TableContainer>
